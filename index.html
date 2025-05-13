@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ajax Catalog</title>
-
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <style>
        body{
@@ -48,18 +47,14 @@
   </style>
 </head>
 <body>
-
   <nav class="mb-4">
     <a href="#" id="link-home" class="btn btn-outline-primary btn-modern">Додому</a>
     <a href="#" id="link-catalog" class="btn btn-primary btn-modern">Каталог</a>
   </nav>
-
-
   <div id="app">
     <h2>Ласкаво просимо!</h2>
     <p>Натисніть «Каталог», щоб переглянути категорії.</p>
   </div>
-
 
   <script>
     const app = document.getElementById('app');
@@ -68,16 +63,23 @@
       const res = await fetch('data/categories.json');
       const categories = await res.json();
 
+    
       app.innerHTML = '<h2>Категорії</h2>' +
         categories.map(cat =>
           `<a href="#" class="btn btn-outline-secondary btn-modern cat-link" data-sn="${cat.shortname}">${cat.name}</a>`
-        ).join('');
+        ).join('') +
+        `<a href="#" id="specials" class="btn btn-warning btn-modern cat-link">Specials</a>`;
 
-   
+ 
       document.querySelectorAll('.cat-link').forEach(el => {
         const sn = el.dataset.sn;
         if (sn) el.onclick = () => loadItems(sn);
       });
+   
+      document.getElementById('specials').onclick = () => {
+        const rnd = categories[Math.floor(Math.random() * categories.length)];
+        loadItems(rnd.shortname);
+      };
     }
 
     async function loadItems(shortname) {
@@ -87,18 +89,14 @@
 
       app.innerHTML = `<h2>${title}</h2>` +
         items.map(it => `
-          <div class="card mb-4 shadow-sm" style="max-width: 500px; border-radius: 1rem;">
+          <div class="card mb-4 shadow-sm" style="max-width:500px;border-radius:1rem;">
             <div class="row g-0">
-              <div class="col-4">
-                <img src="${it.image}" class="img-fluid rounded-start" alt="${it.name}" loading="lazy">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h5 class="card-title">${it.name}</h5>
-                  <p class="card-text">${it.description}</p>
-                  <p class="card-text"><strong>${it.price}</strong></p>
-                </div>
-              </div>
+              <div class="col-4"><img src="${it.image}" class="img-fluid rounded-start" alt="${it.name}" loading="lazy"></div>
+              <div class="col-8"><div class="card-body">
+                <h5 class="card-title">${it.name}</h5>
+                <p class="card-text">${it.description}</p>
+                <p class="card-text"><strong>${it.price}</strong></p>
+              </div></div>
             </div>
           </div>`
         ).join('');
