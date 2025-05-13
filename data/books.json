@@ -1,0 +1,6 @@
+[
+    { "id": 201, "name": "Novel A",      "shortname": "novel_a",   "description": "Lorem ipsum dolor sit amet.", "price": "19 USD",  "image": "https://place-hold.it/200x200/red/blue/white.jpg&text=kk&bold&fontsize=24" },
+    { "id": 202, "name": "Science B",    "shortname": "science_b", "description": "Consectetur adipiscing elit.", "price": "25 USD",  "image": "https://place-hold.it/200x200" },
+    { "id": 203, "name": "History C",    "shortname": "history_c", "description": "Sed do eiusmod tempor.",       "price": "22 USD",  "image": "https://place-hold.it/200x200" },
+    { "id": 204, "name": "E-Book D",     "shortname": "ebook_d",   "description": "Ut labore et dolore magna.",   "price": "9 USD",   "image": "https://place-hold.it/200x200" }
+  ]

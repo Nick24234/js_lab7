@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Electronics", "shortname": "electronics", "notes": "Latest gadgets and devices" },
+  { "id": 2, "name": "Books",       "shortname": "books",       "notes": "Fiction, non-fiction, e-books" },
+  { "id": 3, "name": "Services",    "shortname": "services",    "notes": "Consulting and support" }
+]

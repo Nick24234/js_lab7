@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax Catalog</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <style>
+       body{
+    margin: 0;
+    padding: 30px;
+    background:rgb(243, 243, 243);
+
+   }
+    .btn-modern {
+      background-color: rgb(255, 255, 255);
+      border-radius: 2rem;
+      color: rgb(85, 85, 85);
+      padding: 0.75rem 1.5rem;
+      margin-right: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-modern:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      
+    }
+    
+    #link-home{
+     position: absolute;
+     top: 50px;
+    }
+
+    #link-catalog{
+     position: absolute;
+     top: 50px;
+     left: 140px;
+    }
+
+    #app{
+      position: absolute;
+      top: 90px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="mb-4">
+    <a href="#" id="link-home" class="btn btn-outline-primary btn-modern">Додому</a>
+    <a href="#" id="link-catalog" class="btn btn-primary btn-modern">Каталог</a>
+  </nav>
+
+
+  <div id="app">
+    <h2>Ласкаво просимо!</h2>
+    <p>Натисніть «Каталог», щоб переглянути категорії.</p>
+  </div>
+
+
+  <script>
+    const app = document.getElementById('app');
+
+    async function loadCategories() {
+      const res = await fetch('data/categories.json');
+      const categories = await res.json();
+
+      app.innerHTML = '<h2>Категорії</h2>' +
+        categories.map(cat =>
+          `<a href="#" class="btn btn-outline-secondary btn-modern cat-link" data-sn="${cat.shortname}">${cat.name}</a>`
+        ).join('');
+
+   
+      document.querySelectorAll('.cat-link').forEach(el => {
+        const sn = el.dataset.sn;
+        if (sn) el.onclick = () => loadItems(sn);
+      });
+    }
+
+    async function loadItems(shortname) {
+      const res = await fetch(`data/${shortname}.json`);
+      const items = await res.json();
+      const title = document.querySelector(`.cat-link[data-sn="${shortname}"]`)?.textContent || shortname;
+
+      app.innerHTML = `<h2>${title}</h2>` +
+        items.map(it => `
+          <div class="card mb-4 shadow-sm" style="max-width: 500px; border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-4">
+                <img src="${it.image}" class="img-fluid rounded-start" alt="${it.name}" loading="lazy">
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <h5 class="card-title">${it.name}</h5>
+                  <p class="card-text">${it.description}</p>
+                  <p class="card-text"><strong>${it.price}</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>`
+        ).join('');
+    }
+
+    document.getElementById('link-home').onclick = () => location.reload();
+    document.getElementById('link-catalog').onclick = () => loadCategories();
+  </script>
+</body>
+</html>

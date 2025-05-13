@@ -1,0 +1,6 @@
+[
+    { "id": 301, "name": "Consulting",    "shortname": "consult",   "description": "Lorem ipsum dolor sit amet.", "price": "150 USD", "image": "https://place-hold.it/200x200" },
+    { "id": 302, "name": "Support",       "shortname": "support",   "description": "Consectetur adipiscing elit.", "price": "100 USD", "image": "https://place-hold.it/200x200" },
+    { "id": 303, "name": "Maintenance",   "shortname": "maint",     "description": "Sed do eiusmod tempor.",       "price": "200 USD", "image": "https://place-hold.it/200x200" },
+    { "id": 304, "name": "Customization", "shortname": "custom",    "description": "Ut labore et dolore magna.",   "price": "250 USD", "image": "https://place-hold.it/200x200" }
+  ]

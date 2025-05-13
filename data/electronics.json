@@ -1,0 +1,6 @@
+[
+  { "id": 101, "name": "Smartphone",   "shortname": "phone",   "description": "Lorem ipsum dolor sit amet.", "price": "499 USD", "image": "https://place-hold.it/200x200" },
+  { "id": 102, "name": "Laptop",       "shortname": "laptop",  "description": "Consectetur adipiscing elit.", "price": "899 USD", "image": "https://place-hold.it/200x200" },
+  { "id": 103, "name": "Headphones",   "shortname": "headph",  "description": "Sed do eiusmod tempor.",       "price": "199 USD", "image": "https://place-hold.it/200x200" },
+  { "id": 104, "name": "Smartwatch",   "shortname": "watch",   "description": "Ut labore et dolore magna.",   "price": "249 USD", "image": "https://place-hold.it/200x200" }
+]
